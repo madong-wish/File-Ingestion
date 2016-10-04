@@ -1,0 +1,6 @@
+# IDEA
+.idea/*
+.idea/
+
+# Log Files
+data/

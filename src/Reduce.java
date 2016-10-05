@@ -28,6 +28,7 @@ public class Reduce implements Runnable {
     @Override
     public void run() {
         HashMap<String, long[]> userMap = new HashMap<String, long[]>();
+        long startTime = System.currentTimeMillis();
 
         for (int i = 0; i <= cycle; i++) {
             try {
@@ -62,6 +63,7 @@ public class Reduce implements Runnable {
                 e.printStackTrace();
             }
         }
+        System.out.println(String.format("Finished reducing %d th partition in: %s sec", index, (System.currentTimeMillis() - startTime)/1000));
         try {
             synchronized (this) {
                 if (!writeLock) {

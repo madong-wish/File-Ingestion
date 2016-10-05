@@ -7,9 +7,15 @@ import java.util.Random;
 
 /**
  * Created by manduodong on 10/3/16.
- *
+ * class to generate test file
  */
 public class GenerateTestFile {
+    /**
+     * Split file into several chunks
+     * @param fileName name of the file to be generated
+     * @param lines number of total lines. 400M lines is about 10 GB file
+     * @param userRange range of userID to be randomly generated, from 0
+     */
     public void generateFile(String fileName, long lines, int userRange) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File(
                 String.format("data/%s%s", fileName, ".txt"))));

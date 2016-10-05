@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Created by manduodong on 9/29/16.
+ * Created by manduo dong on 9/29/16.
  *
  */
 
@@ -62,7 +62,7 @@ public class FileUtil {
 //            if (!file.delete()) {
 //                System.out.println("FAILED to delete file");
 //            }
-            System.out.println("Total execute time: " + String.valueOf(System.currentTimeMillis() - startTime));
+            System.out.println("Total execute time: %s sec" + (System.currentTimeMillis() - startTime)/1000);
         } catch (IOException e) {
             e.printStackTrace();
         }

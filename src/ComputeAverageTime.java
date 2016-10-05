@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ComputeAverageTime {
     private static final int FILE_SPLIT_SIZE_PER_CYCLE = 20;
-    private static final long MAX_LINE_PER_CYCLE = 1000000 * FILE_SPLIT_SIZE_PER_CYCLE;
+    private static final long MAX_LINE_PER_CYCLE = 1000000 * FILE_SPLIT_SIZE_PER_CYCLE; // < 40% memory
     static boolean wait = true;
     private static final String FILE_NAME = "test1.txt";
 
@@ -27,6 +27,7 @@ public class ComputeAverageTime {
         }
 
         //Reduce in threads
+        //Policy can be Strict or Update - see Reduce for details
         System.out.println("############### Reducing... ###################");
         while (wait) {
             TimeUnit.SECONDS.sleep(5);

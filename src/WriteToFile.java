@@ -19,14 +19,11 @@ public class WriteToFile implements Runnable {
         this.index = index;
         this.count = count;
         this.fileName = fileName;
-//        new Thread(
-//                new WriteToFile(partition, index, count)
-//        ).start();
     }
 
     @Override
     public void run() {
-        long startTime = System.currentTimeMillis();
+        //long startTime = System.currentTimeMillis();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(
                     String.format("data/%s%s%d%s%d%s", fileName, ".", index, ".", count, ".txt"))));
@@ -41,6 +38,6 @@ public class WriteToFile implements Runnable {
             //suppress exception
         }
         partition.clear();
-        System.out.println(String.format("write %d_%d execute time: %d", index, count, System.currentTimeMillis() - startTime));
+        //System.out.println(String.format("write %d_%d execute time: %d", index, count, System.currentTimeMillis() - startTime));
     }
 }

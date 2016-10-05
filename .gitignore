@@ -1,6 +1,7 @@
 # IDEA
-.idea/*
 .idea/
 
 # Log Files
 data/
+.DS_Store
+out/

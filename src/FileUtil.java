@@ -42,6 +42,7 @@ public class FileUtil {
                     for (int i = 0; i < splitSize; i++) {
                         new Thread(new WriteToFile(partitions.get(i), file.getName(), i, cycle)).start();
                     }
+                    System.out.println(String.format("Processed %d lines", (cycle + 1) * MAX_LINE_PER_CYCLE));
                     cycle++;
                     partitions = new ArrayList<>();
                     for (int i = 0; i < splitSize; i++) {

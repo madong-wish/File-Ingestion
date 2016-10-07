@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 
-public class FileUtil {
+public class Partition {
     /**
      * Split file into several chunks
      * @param file name of the file to be split
@@ -24,7 +24,7 @@ public class FileUtil {
             for (int i = 0; i < splitSize; i++) {
                 partitions.add(new ArrayList<>());
             }
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             int index;
 
@@ -59,10 +59,12 @@ public class FileUtil {
 
             br.close();
             ComputeAverageTime.wait = false;
+
+            // uncomment below lines if the original file can be deleted after processing
 //            if (!file.delete()) {
 //                System.out.println("FAILED to delete file");
 //            }
-            System.out.println("Total execute time: %s sec" + (System.currentTimeMillis() - startTime)/1000);
+            System.out.println(String.format("Total execute time: %d sec", (System.currentTimeMillis() - startTime)/1000));
         } catch (IOException e) {
             e.printStackTrace();
         }

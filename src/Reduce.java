@@ -15,14 +15,16 @@ public class Reduce implements Runnable {
     private String fileName;
     private String policy;
     private static boolean writeLock = false;
+    private boolean deleteFile;
 
     //dictionary: key: UserID, value: [total_close_open_diff, weight, latest_open]
 
-    Reduce(String fileName, int cycle, int index, String policy) {
+    Reduce(String fileName, int cycle, int index, String policy, boolean deleteFile) {
         this.fileName = fileName;
         this.cycle = cycle;
         this.index = index;
         this.policy = policy;
+        this.deleteFile = deleteFile;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Reduce implements Runnable {
         for (int i = 0; i <= cycle; i++) {
             try {
                 File file = new File(String.format("data/%s%s%d%s%d%s", fileName, ".", index, ".", i, ".txt"));
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 try {
                     while ((line = br.readLine()) != null) {
@@ -42,7 +44,7 @@ public class Reduce implements Runnable {
 
                         if (!userMap.containsKey(key)) {
                             if (userInfo[2].equals("open")) {
-                                userMap.put(key, new long[] {0L, 0L, 0L});
+                                userMap.put(key, new long[] {0L, 0L, Long.parseLong(userInfo[1])});
                             }
                         } else {
                             long[] val = userMap.get(key);
@@ -53,7 +55,7 @@ public class Reduce implements Runnable {
                             }
                         }
                     }
-                    if (!file.delete()) {
+                    if (deleteFile && !file.delete()) {
                         System.out.println("FAILED to delete file");
                     }
                 } catch (IOException e) {
@@ -73,7 +75,7 @@ public class Reduce implements Runnable {
                 else
                 {
                     while (writeLock) {
-                        Thread.sleep(5000L);
+                        Thread.sleep(3000L);
                         if (!writeLock) {
                             writeLock = true;
                             System.out.println(String.format("Obtained write lock for index: %d", index));

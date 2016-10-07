@@ -35,6 +35,6 @@ public class GenerateTestFile {
             10M lines = ~ 230MB
             200 M lines = ~ 5GB
          */
-        generateTestFile.generateFile("test2", 10000000, 50000);
+        generateTestFile.generateFile("testReduce", 100, 10);
     }
 }
